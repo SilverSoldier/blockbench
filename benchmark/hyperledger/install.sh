@@ -20,7 +20,7 @@ if ! [ -d "$HL_DATA" ]; then
 fi
 cd $HL_DATA
 
-GOTAR="go1.9.3.linux-$ARCH.tar.gz"
+GOTAR="go1.11.13.linux-$ARCH.tar.gz"
 wget https://storage.googleapis.com/golang/$GOTAR
 tar -zxvf $GOTAR
 export GOPATH=`pwd`/go
@@ -28,7 +28,7 @@ export PATH=$PATH:`pwd`/go/bin
 
 git clone https://github.com/facebook/rocksdb.git
 cd rocksdb
-git checkout v4.1
+git checkout v6.2.4
 PORTABLE=1 make shared_lib
 sudo INSTALL_PATH=/usr/local make install-shared
 
@@ -42,7 +42,7 @@ if [ $ARCH == "arm64" ]; then
 else
 	git clone https://github.com/hyperledger/fabric
 	cd fabric
-	git checkout e728c5c22160620e189e85be6becb7cbf75d87dc
+	git checkout release-1.4
 fi
 cp $HL_HOME/hl_core.yaml peer/core.yaml
 make peer
